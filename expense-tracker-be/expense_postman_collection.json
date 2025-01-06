@@ -1,0 +1,341 @@
+{
+  "info": {
+    "name": "Expense Tracker",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "General",
+      "item": [
+        {
+          "name": "Debug",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/debug",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "debug"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Monthly Summary",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/summary",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "summary"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "item": [
+        {
+          "name": "Get Expenses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/expenses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "expenses"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Expense",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Rent\",\n    \"amount\": 20000.0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/expenses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "expenses"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Expense as Paid",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/expenses/Rent/paid",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "expenses",
+                "Rent",
+                "paid"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Expense as Unpaid",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/expenses/EMI/unpaid",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "expenses",
+                "EMI",
+                "unpaid"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Expense Amount",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 75000.0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/expenses/EMI/amount",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "expenses",
+                "EMI",
+                "amount"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Expense",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/expenses/Test Expense",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "expenses",
+                "Test Expense"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Income",
+      "item": [
+        {
+          "name": "Get Income",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/income",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "income"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Income",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Salary\",\n    \"amount\": 50000.0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/income",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "income"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Income as Received",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/income/Salary/received",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "income",
+                "Salary",
+                "received"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Income as Unreceived",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/income/TATA AIG/unreceived",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "income",
+                "TATA AIG",
+                "unreceived"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Income Amount",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 180000.0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/income/TAGIC/amount",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "income",
+                "TAGIC",
+                "amount"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Income",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/months/01-2025/income/ABIDE",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "months",
+                "01-2025",
+                "income",
+                "ABIDE"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
