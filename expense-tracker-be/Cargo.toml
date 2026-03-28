@@ -11,3 +11,14 @@ actix-web = "4.4"
 actix-cors = "0.6"
 env_logger = "0.10"
 dotenv = "0.15"
+
+# AWS SDK for DynamoDB
+aws-config = "1.5"
+aws-sdk-dynamodb = "1.54"
+
+# Async runtime and utilities
+tokio = { version = "1", features = ["full"] }
+thiserror = "1.0"
+
+# UUID for generating unique IDs
+uuid = { version = "1.10", features = ["v4", "serde"] }
