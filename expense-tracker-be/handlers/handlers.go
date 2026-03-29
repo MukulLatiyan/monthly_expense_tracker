@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"strconv"
 
 	"expense-tracker/db"
@@ -10,6 +11,15 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 )
+
+// decodeParam URL-decodes a path parameter
+func decodeParam(s string) string {
+	decoded, err := url.PathUnescape(s)
+	if err != nil {
+		return s
+	}
+	return decoded
+}
 
 type Handler struct {
 	Repo *db.DynamoDBRepository
@@ -63,7 +73,7 @@ func (h *Handler) DebugData(c *fiber.Ctx) error {
 }
 
 func (h *Handler) GetSummary(c *fiber.Ctx) error {
-	month := c.Params("month")
+	month := decodeParam(c.Params("month"))
 	ctx := context.Background()
 
 	expenses, err := h.Repo.GetExpenses(ctx, month)
@@ -109,7 +119,7 @@ func (h *Handler) GetSummary(c *fiber.Ctx) error {
 }
 
 func (h *Handler) GetExpenses(c *fiber.Ctx) error {
-	month := c.Params("month")
+	month := decodeParam(c.Params("month"))
 	ctx := context.Background()
 
 	expenses, err := h.Repo.GetExpenses(ctx, month)
@@ -121,7 +131,7 @@ func (h *Handler) GetExpenses(c *fiber.Ctx) error {
 }
 
 func (h *Handler) AddExpense(c *fiber.Ctx) error {
-	month := c.Params("month")
+	month := decodeParam(c.Params("month"))
 	var req models.AddExpenseRequest
 
 	if err := c.BodyParser(&req); err != nil {
@@ -166,8 +176,8 @@ func (h *Handler) MarkExpenseUnpaid(c *fiber.Ctx) error {
 }
 
 func (h *Handler) updateExpenseStatus(c *fiber.Ctx, paid bool) error {
-	month := c.Params("month")
-	name := c.Params("name")
+	month := decodeParam(c.Params("month"))
+	name := decodeParam(c.Params("name"))
 	ctx := context.Background()
 
 	expense, err := h.Repo.GetExpense(ctx, month, name)
@@ -198,8 +208,8 @@ func (h *Handler) updateExpenseStatus(c *fiber.Ctx, paid bool) error {
 }
 
 func (h *Handler) UpdateExpenseAmount(c *fiber.Ctx) error {
-	month := c.Params("month")
-	name := c.Params("name")
+	month := decodeParam(c.Params("month"))
+	name := decodeParam(c.Params("name"))
 	var req models.UpdateAmountRequest
 
 	if err := c.BodyParser(&req); err != nil {
@@ -226,8 +236,8 @@ func (h *Handler) UpdateExpenseAmount(c *fiber.Ctx) error {
 }
 
 func (h *Handler) DeleteExpense(c *fiber.Ctx) error {
-	month := c.Params("month")
-	name := c.Params("name")
+	month := decodeParam(c.Params("month"))
+	name := decodeParam(c.Params("name"))
 	ctx := context.Background()
 
 	expense, err := h.Repo.GetExpense(ctx, month, name)
@@ -246,7 +256,7 @@ func (h *Handler) DeleteExpense(c *fiber.Ctx) error {
 }
 
 func (h *Handler) GetIncome(c *fiber.Ctx) error {
-	month := c.Params("month")
+	month := decodeParam(c.Params("month"))
 	ctx := context.Background()
 
 	income, err := h.Repo.GetIncome(ctx, month)
@@ -258,7 +268,7 @@ func (h *Handler) GetIncome(c *fiber.Ctx) error {
 }
 
 func (h *Handler) AddIncome(c *fiber.Ctx) error {
-	month := c.Params("month")
+	month := decodeParam(c.Params("month"))
 	var req models.AddIncomeRequest
 
 	if err := c.BodyParser(&req); err != nil {
@@ -303,8 +313,8 @@ func (h *Handler) MarkIncomeUnreceived(c *fiber.Ctx) error {
 }
 
 func (h *Handler) updateIncomeStatus(c *fiber.Ctx, received bool) error {
-	month := c.Params("month")
-	name := c.Params("name")
+	month := decodeParam(c.Params("month"))
+	name := decodeParam(c.Params("name"))
 	ctx := context.Background()
 
 	income, err := h.Repo.GetIncomeItem(ctx, month, name)
@@ -335,8 +345,8 @@ func (h *Handler) updateIncomeStatus(c *fiber.Ctx, received bool) error {
 }
 
 func (h *Handler) UpdateIncomeAmount(c *fiber.Ctx) error {
-	month := c.Params("month")
-	name := c.Params("name")
+	month := decodeParam(c.Params("month"))
+	name := decodeParam(c.Params("name"))
 	var req models.UpdateAmountRequest
 
 	if err := c.BodyParser(&req); err != nil {
@@ -363,8 +373,8 @@ func (h *Handler) UpdateIncomeAmount(c *fiber.Ctx) error {
 }
 
 func (h *Handler) DeleteIncome(c *fiber.Ctx) error {
-	month := c.Params("month")
-	name := c.Params("name")
+	month := decodeParam(c.Params("month"))
+	name := decodeParam(c.Params("name"))
 	ctx := context.Background()
 
 	income, err := h.Repo.GetIncomeItem(ctx, month, name)
